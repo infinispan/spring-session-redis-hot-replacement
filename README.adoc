@@ -4,7 +4,30 @@ This repository is a fork of Spring Session repository where the Redis examples 
 to showcase the hot replacement of Redis in favor of Infinispan.
 
 == Samples
+There are 4 samples:
 
+* spring-session-sample-boot-redis
+* spring-session-sample-boot-redis-json
+* spring-session-sample-javaconfig-redis
+* spring-session-sample-xml-redis
+
+The original code expects Redis running in localhost.
+These examples expect Infinispan running in localhost:11222
+
+```
+ docker run -it -p 11222:11222 -e USER="admin" -e PASS="secret" quay.io/infinispan/server:15.0
+```
+
+You can override the configuration by changing
+
+```properties
+spring.data.redis.host=localhost
+spring.data.redis.port=11222
+spring.data.redis.username=admin
+spring.data.redis.password=secret
+```
+
+Tests on the examples use test containers.
 
 == License
 
