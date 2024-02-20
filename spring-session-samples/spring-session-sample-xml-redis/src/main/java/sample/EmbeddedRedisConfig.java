@@ -16,6 +16,7 @@
 
 package sample;
 
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.testcontainers.containers.GenericContainer;
 
 import org.springframework.context.annotation.Bean;
@@ -28,7 +29,7 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 @Profile("embedded-redis")
 public class EmbeddedRedisConfig {
 
-	private static final String DOCKER_IMAGE = "redis:7.0.4-alpine";
+	private static final String DOCKER_IMAGE = "quay.io/infinispan/server:15.0";
 
 	@Bean
 	public GenericContainer redisContainer() {
@@ -40,7 +41,12 @@ public class EmbeddedRedisConfig {
 	@Bean
 	@Primary
 	public LettuceConnectionFactory redisConnectionFactory() {
-		return new LettuceConnectionFactory(redisContainer().getHost(), redisContainer().getFirstMappedPort());
+		RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+		redisStandaloneConfiguration.setHostName(redisContainer().getHost());
+		redisStandaloneConfiguration.setPort(redisContainer().getFirstMappedPort());
+		redisStandaloneConfiguration.setUsername("admin");
+		redisStandaloneConfiguration.setPassword("secret");
+		return new LettuceConnectionFactory(redisStandaloneConfiguration);
 	}
 
 }

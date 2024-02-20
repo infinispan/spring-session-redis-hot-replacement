@@ -39,7 +39,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 class RedisSerializerTest {
 
-	private static final String DOCKER_IMAGE = "redis:7.0.4-alpine";
+	private static final String DOCKER_IMAGE = "quay.io/infinispan/server:15.0";
 
 	@SpringSessionRedisOperations
 	private RedisTemplate<Object, Object> sessionRedisTemplate;
@@ -57,7 +57,7 @@ class RedisSerializerTest {
 
 		@Bean
 		GenericContainer redisContainer() {
-			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(6379);
+			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(11222);
 			redisContainer.start();
 			return redisContainer;
 		}

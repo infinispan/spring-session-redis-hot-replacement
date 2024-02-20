@@ -29,22 +29,25 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
  */
 public abstract class AbstractRedisITests {
 
-	private static final String DOCKER_IMAGE = "redis:7.0.4-alpine";
+	private static final String DOCKER_IMAGE = "quay.io/infinispan/server:15.0";
 
 	protected static class BaseConfig {
 
 		@Bean
 		public GenericContainer redisContainer() {
-			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(6379);
+			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(11222);
 			redisContainer.start();
 			return redisContainer;
 		}
 
 		@Bean
 		public LettuceConnectionFactory redisConnectionFactory() {
-			RedisStandaloneConfiguration configuration = new RedisStandaloneConfiguration(redisContainer().getHost(),
-					redisContainer().getFirstMappedPort());
-			return new LettuceConnectionFactory(configuration);
+			RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+			redisStandaloneConfiguration.setHostName(redisContainer().getHost());
+			redisStandaloneConfiguration.setPort(redisContainer().getFirstMappedPort());
+			redisStandaloneConfiguration.setUsername("admin");
+			redisStandaloneConfiguration.setPassword("secret");
+			return new LettuceConnectionFactory(redisStandaloneConfiguration);
 		}
 
 	}

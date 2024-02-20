@@ -21,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
+import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.testcontainers.containers.GenericContainer;
 import sample.pages.HomePage;
 import sample.pages.LoginPage;
@@ -45,7 +46,7 @@ import org.springframework.test.web.servlet.htmlunit.webdriver.MockMvcHtmlUnitDr
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 class BootTests {
 
-	private static final String DOCKER_IMAGE = "redis:7.0.4-alpine";
+	private static final String DOCKER_IMAGE = "quay.io/infinispan/server:15.0";
 
 	@Autowired
 	private MockMvc mockMvc;
@@ -90,14 +91,19 @@ class BootTests {
 
 		@Bean
 		GenericContainer redisContainer() {
-			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(6379);
+			GenericContainer redisContainer = new GenericContainer(DOCKER_IMAGE).withExposedPorts(11222);
 			redisContainer.start();
 			return redisContainer;
 		}
 
 		@Bean
 		LettuceConnectionFactory redisConnectionFactory() {
-			return new LettuceConnectionFactory(redisContainer().getHost(), redisContainer().getFirstMappedPort());
+			RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+			redisStandaloneConfiguration.setHostName(redisContainer().getHost());
+			redisStandaloneConfiguration.setPort(redisContainer().getFirstMappedPort());
+			redisStandaloneConfiguration.setUsername("admin");
+			redisStandaloneConfiguration.setPassword("secret");
+			return new LettuceConnectionFactory(redisStandaloneConfiguration);
 		}
 
 	}
