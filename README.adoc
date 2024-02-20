@@ -29,6 +29,12 @@ spring.data.redis.password=secret
 
 Tests on the examples use test containers.
 
+Run examples:
+
+```
+./gradlew :spring-session-sample-boot-redis:bootRun
+```
+
 == License
 
 Spring Session is Open Source software released under the https://www.apache.org/licenses/LICENSE-2.0.html[Apache 2.0 license].
