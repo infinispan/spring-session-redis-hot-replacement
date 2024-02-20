@@ -38,29 +38,29 @@ import org.springframework.session.Session;
 import org.springframework.session.SessionRepository;
 
 /**
- * Switches the {@link jakarta.servlet.http.HttpSession} implementation to be backed by a
- * {@link org.springframework.session.Session}.
+ * Switches the {@link HttpSession} implementation to be backed by a
+ * {@link Session}.
  *
  * The {@link SessionRepositoryFilter} wraps the
- * {@link jakarta.servlet.http.HttpServletRequest} and overrides the methods to get an
- * {@link jakarta.servlet.http.HttpSession} to be backed by a
- * {@link org.springframework.session.Session} returned by the
- * {@link org.springframework.session.SessionRepository}.
+ * {@link HttpServletRequest} and overrides the methods to get an
+ * {@link HttpSession} to be backed by a
+ * {@link Session} returned by the
+ * {@link SessionRepository}.
  *
  * The {@link SessionRepositoryFilter} uses a {@link HttpSessionIdResolver} (default
  * {@link CookieHttpSessionIdResolver}) to bridge logic between an
- * {@link jakarta.servlet.http.HttpSession} and the
- * {@link org.springframework.session.Session} abstraction. Specifically:
+ * {@link HttpSession} and the
+ * {@link Session} abstraction. Specifically:
  *
  * <ul>
  * <li>The session id is looked up using
- * {@link HttpSessionIdResolver#resolveSessionIds(jakarta.servlet.http.HttpServletRequest)}
+ * {@link HttpSessionIdResolver#resolveSessionIds(HttpServletRequest)}
  * . The default is to look in a cookie named SESSION.</li>
- * <li>The session id of newly created {@link org.springframework.session.Session} is sent
+ * <li>The session id of newly created {@link Session} is sent
  * to the client using
- * {@link HttpSessionIdResolver#setSessionId(jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse, String)}
+ * {@link HttpSessionIdResolver#setSessionId(HttpServletRequest, HttpServletResponse, String)}
  * <li>The client is notified that the session id is no longer valid with
- * {@link HttpSessionIdResolver#expireSession(jakarta.servlet.http.HttpServletRequest, jakarta.servlet.http.HttpServletResponse)}
+ * {@link HttpSessionIdResolver#expireSession(HttpServletRequest, HttpServletResponse)}
  * </li>
  * </ul>
  *
@@ -183,9 +183,9 @@ public class SessionRepositoryFilter<S extends Session> extends OncePerRequestFi
 	}
 
 	/**
-	 * A {@link jakarta.servlet.http.HttpServletRequest} that retrieves the
-	 * {@link jakarta.servlet.http.HttpSession} using a
-	 * {@link org.springframework.session.SessionRepository}.
+	 * A {@link HttpServletRequest} that retrieves the
+	 * {@link HttpSession} using a
+	 * {@link SessionRepository}.
 	 *
 	 * @author Rob Winch
 	 * @since 1.0

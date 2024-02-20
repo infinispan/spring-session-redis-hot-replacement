@@ -24,8 +24,8 @@ import org.springframework.session.events.SessionExpiredEvent;
 import org.springframework.util.Assert;
 
 /**
- * A {@link SessionRepository} backed by a {@link java.util.Map} and that uses a
- * {@link MapSession}. The injected {@link java.util.Map} can be backed by a distributed
+ * A {@link SessionRepository} backed by a {@link Map} and that uses a
+ * {@link MapSession}. The injected {@link Map} can be backed by a distributed
  * NoSQL store like Hazelcast, for instance. Note that the supplied map itself is
  * responsible for purging the expired sessions.
  *
@@ -46,9 +46,9 @@ public class MapSessionRepository implements SessionRepository<MapSession> {
 	private SessionIdGenerator sessionIdGenerator = UuidSessionIdGenerator.getInstance();
 
 	/**
-	 * Creates a new instance backed by the provided {@link java.util.Map}. This allows
-	 * injecting a distributed {@link java.util.Map}.
-	 * @param sessions the {@link java.util.Map} to use. Cannot be null.
+	 * Creates a new instance backed by the provided {@link Map}. This allows
+	 * injecting a distributed {@link Map}.
+	 * @param sessions the {@link Map} to use. Cannot be null.
 	 */
 	public MapSessionRepository(Map<String, Session> sessions) {
 		if (sessions == null) {

@@ -27,7 +27,7 @@ import java.util.UUID;
 
 /**
  * <p>
- * A {@link Session} implementation that is backed by a {@link java.util.Map}. The
+ * A {@link Session} implementation that is backed by a {@link Map}. The
  * defaults for the properties are:
  * </p>
  * <ul>

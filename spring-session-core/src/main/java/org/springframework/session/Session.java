@@ -84,7 +84,7 @@ public interface Session {
 
 	/**
 	 * Gets the attribute names that have a value associated with it. Each value can be
-	 * passed into {@link org.springframework.session.Session#getAttribute(String)} to
+	 * passed into {@link Session#getAttribute(String)} to
 	 * obtain the attribute value.
 	 * @return the attribute names that have a value associated with it.
 	 * @see #getAttribute(String)
@@ -94,7 +94,7 @@ public interface Session {
 	/**
 	 * Sets the attribute value for the provided attribute name. If the attributeValue is
 	 * null, it has the same result as removing the attribute with
-	 * {@link org.springframework.session.Session#removeAttribute(String)} .
+	 * {@link Session#removeAttribute(String)} .
 	 * @param attributeName the attribute name to set
 	 * @param attributeValue the value of the attribute to set. If null, the attribute
 	 * will be removed.

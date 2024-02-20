@@ -32,7 +32,7 @@ import org.springframework.session.web.http.CookieSerializer.CookieValue;
  * When a session is created, the HTTP response will have a cookie with the specified
  * cookie name and the value of the session id. The cookie will be marked as a session
  * cookie, use the context path for the path of the cookie, marked as HTTPOnly, and if
- * {@link jakarta.servlet.http.HttpServletRequest#isSecure()} returns true, the cookie
+ * {@link HttpServletRequest#isSecure()} returns true, the cookie
  * will be marked as secure. For example:
  *
  * <pre>

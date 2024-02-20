@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponseWrapper;
 
 /**
  * Base class for response wrappers which encapsulate the logic for handling an event when
- * the {@link jakarta.servlet.http.HttpServletResponse} is committed.
+ * the {@link HttpServletResponse} is committed.
  *
  * @author Rob Winch
  * @since 1.0
@@ -84,7 +84,7 @@ abstract class OnCommittedResponseWrapper extends HttpServletResponseWrapper {
 	/**
 	 * Invoke this method to disable invoking
 	 * {@link OnCommittedResponseWrapper#onResponseCommitted()} when the
-	 * {@link jakarta.servlet.http.HttpServletResponse} is committed. This can be useful
+	 * {@link HttpServletResponse} is committed. This can be useful
 	 * in the event that Async Web Requests are made.
 	 */
 	private void disableOnResponseCommitted() {
@@ -93,7 +93,7 @@ abstract class OnCommittedResponseWrapper extends HttpServletResponseWrapper {
 
 	/**
 	 * Implement the logic for handling the
-	 * {@link jakarta.servlet.http.HttpServletResponse} being committed.
+	 * {@link HttpServletResponse} being committed.
 	 */
 	protected abstract void onResponseCommitted();
 
@@ -232,8 +232,8 @@ abstract class OnCommittedResponseWrapper extends HttpServletResponseWrapper {
 	/**
 	 * Ensures {@link OnCommittedResponseWrapper#onResponseCommitted()} is invoked before
 	 * calling the prior to methods that commit the response. We delegate all methods to
-	 * the original {@link java.io.PrintWriter} to ensure that the behavior is as close to
-	 * the original {@link java.io.PrintWriter} as possible. See SEC-2039
+	 * the original {@link PrintWriter} to ensure that the behavior is as close to
+	 * the original {@link PrintWriter} as possible. See SEC-2039
 	 *
 	 * @author Rob Winch
 	 */
@@ -474,8 +474,8 @@ abstract class OnCommittedResponseWrapper extends HttpServletResponseWrapper {
 	/**
 	 * Ensures{@link OnCommittedResponseWrapper#onResponseCommitted()} is invoked before
 	 * calling methods that commit the response. We delegate all methods to the original
-	 * {@link jakarta.servlet.ServletOutputStream} to ensure that the behavior is as close
-	 * to the original {@link jakarta.servlet.ServletOutputStream} as possible. See
+	 * {@link ServletOutputStream} to ensure that the behavior is as close
+	 * to the original {@link ServletOutputStream} as possible. See
 	 * SEC-2039
 	 *
 	 * @author Rob Winch

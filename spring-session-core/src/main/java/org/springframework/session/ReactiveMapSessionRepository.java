@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
 
 /**
  * A {@link ReactiveSessionRepository} backed by a {@link Map} and that uses a
- * {@link MapSession}. The injected {@link java.util.Map} can be backed by a distributed
+ * {@link MapSession}. The injected {@link Map} can be backed by a distributed
  * NoSQL store like Hazelcast, for instance. Note that the supplied map must be a
  * non-blocking map, and is itself responsible for purging the expired sessions.
  *
